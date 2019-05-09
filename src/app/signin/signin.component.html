@@ -1,0 +1,21 @@
+<div class="container">
+    <h1>Sign in</h1>
+  
+    <p>Please sign in below with your account.</p>
+  
+    <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <input type="text" matInput required autofocus formControlName="name" placeholder="Name">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="password" matInput required formControlName="password" placeholder="Password">
+      </mat-form-field>
+      <button mat-raised-button color="primary" [disabled]="loading || !signinForm.valid" type="submit">
+        Sign in
+        <fa-icon [icon]="faSpinner" spin="true" *ngIf="loading"></fa-icon>
+      </button>
+      <p class="text-warn pad-v-sm text-center" *ngIf="failed">
+        Could not log in with the credentials provided.
+      </p>
+    </form>
+</div>
