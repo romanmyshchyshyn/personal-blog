@@ -13,6 +13,7 @@ import {
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SigninModule } from './signin/signin.module';
+import { SignupModule } from './signup/signup.module';
 import { AuthModule } from './auth/auth.module';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -24,8 +25,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AppRoutingModule,
     SigninModule,
+    SignupModule,
+    AppRoutingModule,
     AuthModule,
     // Angular Material
     MatFormFieldModule,

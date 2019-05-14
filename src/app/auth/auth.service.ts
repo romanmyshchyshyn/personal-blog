@@ -5,13 +5,16 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { SigninModel } from '../signin/signin-model';
+import { SignupModel } from '../signup/signup-model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private loginUrl: string = environment.apiUrl + '/signin/';
+  private signinUrl: string = environment.apiUrl + '/signin/';
+  private signupUrl: string = environment.apiUrl + '/user/';
   redirectUrl: string;
   inBrowser: boolean;
 
@@ -23,8 +26,14 @@ export class AuthService {
     this.inBrowser = isPlatformBrowser(platformId);
   }
 
-  signin(name: string, password: string): Observable<any> {
-    return this.http.post(this.loginUrl, { name, password }).pipe(
+  signin(model: SigninModel): Observable<any> {
+    return this.http.post(this.signinUrl, model).pipe(
+      tap((token: any) =>  this.token = token),
+    );
+  }
+
+  signup(model: SignupModel): Observable<any> {
+    return this.http.post(this.signupUrl, model).pipe(
       tap((token: any) =>  this.token = token),
     );
   }
@@ -34,7 +43,7 @@ export class AuthService {
   }
 
   redirectLogin() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/signin']);
   }
 
   logout() {

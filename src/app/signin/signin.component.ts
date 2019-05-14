@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder } from '@angular/forms';
+import { SigninModel } from './signin-model';
 
 @Component({
   selector: 'app-signin',
@@ -11,10 +12,7 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
-  signinForm = this.fb.group({
-    name: ['', Validators.required],
-    password: ['', Validators.required]
-  });
+  signinForm: FormGroup;
 
   faSpinner = faSpinner;
 
@@ -28,13 +26,20 @@ export class SigninComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    this.signinForm = this.fb.group({
+      name: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
 
   onSubmit() {
     this.failed = false;
     this.loading = true;
-    this.auth.signin(this.signinForm.get('name').value, this.signinForm.get('password').value).subscribe(
+    const signinModel: SigninModel = {
+      name: this.signinForm.get('name').value,
+      password: this.signinForm.get('password').value
+    };
+    this.auth.signin(signinModel).subscribe(
       (data) => {
         this.router.navigate([this.auth.redirectUrl || '/']);
       },
