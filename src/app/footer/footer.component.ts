@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faCookieBite } from '@fortawesome/free-solid-svg-icons'
+import { faCookieBite,  faCopyright } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-footer',
@@ -8,6 +8,7 @@ import { faCookieBite } from '@fortawesome/free-solid-svg-icons'
 })
 export class FooterComponent implements OnInit {
   faCookieBite = faCookieBite;
+  faCopyright = faCopyright;
   
   constructor() { }
 
