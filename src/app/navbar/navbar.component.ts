@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faPuzzlePiece, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import { faPuzzlePiece, faSignOutAlt, faEllipsisV } from '@fortawesome/free-solid-svg-icons'
 import { AuthService } from '../auth/auth.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { AuthService } from '../auth/auth.service';
 export class NavbarComponent implements OnInit {
   faPuzzlePiece = faPuzzlePiece;
   faSignOutAlt = faSignOutAlt;
+  faEllipsisV = faEllipsisV;
 
   constructor(public auth: AuthService) { }
 

@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, NavigationStart, NavigationEnd, NavigationCancel } from '@angular/router';
+import { Router, NavigationStart, NavigationEnd, NavigationCancel, RouterOutlet } from '@angular/router';
 import { filter, tap, debounceTime } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit, OnDestroy {
   sub: Subscription = new Subscription();

@@ -12,7 +12,7 @@
     <div class="navbar-items-wrapper" *ngIf="auth.isSignedin">
         <img class="user-avatar" mat-card-image src="../../assets/img/default-user-avatar.jpg" alt="User avatar" />
         <button mat-icon-button [matMenuTriggerFor]="menu">
-          <mat-icon>more_vert</mat-icon>
+            <fa-icon class="logo" [icon]="faEllipsisV"></fa-icon>
         </button>
           <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="test()">

@@ -15,7 +15,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatButtonModule,
     MatCardModule,
     MatMenuModule,
-    MatIconModule,
     MatDividerModule,
     FontAwesomeModule,
     RouterModule
