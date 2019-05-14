@@ -7,6 +7,7 @@ import { tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { SigninModel } from '../signin/signin-model';
 import { SignupModel } from '../signup/signup-model';
+import { User } from './user-model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,10 @@ export class AuthService {
 
   signin(model: SigninModel): Observable<any> {
     return this.http.post(this.signinUrl, model).pipe(
-      tap((token: any) =>  this.token = token),
+      tap((token: any) =>  {
+        this.token = token;
+        this.user = { name: model.name};
+      }),
     );
   }
 
@@ -38,15 +42,15 @@ export class AuthService {
     );
   }
 
-  get isLoggedIn(): boolean {
+  get isSignedin(): boolean {
     return !!this.token;
   }
 
-  redirectLogin() {
+  redirectSignin() {
     this.router.navigate(['/signin']);
   }
 
-  logout() {
+  signout() {
     this.token = null;
   }
 
@@ -63,6 +67,22 @@ export class AuthService {
       return localStorage.getItem('auth-token');
     } else {
       return null;
+    }
+  }
+
+  set user(user: User) {
+    if (!user) {
+      localStorage.removeItem('auth-user');
+    } else {
+      localStorage.setItem('auth-user', JSON.stringify(user));
+    }
+  }
+
+  get user(): User {
+    if (this.inBrowser) {
+      const userRaw: string = localStorage.getItem('auth-user');
+      const user: any = userRaw ? JSON.parse(userRaw) : null;
+      return user;
     }
   }
 

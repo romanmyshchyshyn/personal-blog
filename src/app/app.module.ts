@@ -16,6 +16,7 @@ import { SigninModule } from './signin/signin.module';
 import { SignupModule } from './signup/signup.module';
 import { AuthModule } from './auth/auth.module';
 import { HttpClientModule } from '@angular/common/http';
+import { NavbarModule } from './navbar/navbar.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
     SignupModule,
     AppRoutingModule,
     AuthModule,
+    NavbarModule,
     // Angular Material
     MatFormFieldModule,
     MatInputModule,

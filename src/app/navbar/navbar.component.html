@@ -1,0 +1,29 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button [routerLink]="['/']" mat-raised-button color="primary">
+        <fa-icon class="logo" [icon]="faPuzzlePiece"></fa-icon>
+        <span>MyBlog</span>
+    </button>
+    <span class="spacer"></span>
+    <div *ngIf="!auth.isSignedin">
+        <button [routerLink]="['/signin']" mat-raised-button color="primary">Sign in</button>
+        <button [routerLink]="['/signup']" mat-raised-button color="primary" class="signup">Sign up</button>
+    </div>
+    <div class="navbar-items-wrapper" *ngIf="auth.isSignedin">
+        <img class="user-avatar" mat-card-image src="../../assets/img/default-user-avatar.jpg" alt="User avatar" />
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="test()">
+              <span>Signed in as <b>{{auth.user.name}}</b> </span>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click)="signout()">
+              <fa-icon class="logo" [icon]="faSignOutAlt"></fa-icon>
+              <span>Sign out</span>
+            </button>            
+          </mat-menu>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

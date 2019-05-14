@@ -12,7 +12,7 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(private auth: AuthService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (this.auth.isLoggedIn) {
+    if (this.auth.isSignedin) {
       request = this.attachToken(request);
     }
     return next.handle(request);

@@ -2,5 +2,8 @@
 
 <main class="mat-typography mat-app-background">
   <mat-progress-bar *ngIf="navigating" id="progress" mode="indeterminate"></mat-progress-bar>
-  <router-outlet></router-outlet>
+  <app-navbar></app-navbar>
+  <div class="wrapper">
+      <router-outlet></router-outlet>
+  </div>  
 </main>
