@@ -35,7 +35,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     AuthModule,
     NavbarModule,
     FooterModule,
-    
+        
     // Angular Material
     MatFormFieldModule,
     MatInputModule,

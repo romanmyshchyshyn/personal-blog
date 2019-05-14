@@ -5,6 +5,7 @@ import { MatToolbarModule, MatButtonModule, MatCardModule, MatIconModule, MatMen
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SearchModule } from '../search/search.module';
 
 @NgModule({
   declarations: [NavbarComponent],
@@ -17,7 +18,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatMenuModule,
     MatDividerModule,
     FontAwesomeModule,
-    RouterModule
+    RouterModule,
+    SearchModule
   ],
   exports: [NavbarComponent]
 })

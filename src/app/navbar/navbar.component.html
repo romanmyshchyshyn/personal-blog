@@ -4,7 +4,7 @@
         <fa-icon class="logo" [icon]="faPuzzlePiece"></fa-icon>
         <span>MyBlog</span>
     </button>
-    <span class="spacer"></span>
+    <app-search class="spacer"></app-search>
     <div *ngIf="!auth.isSignedin">
         <button [routerLink]="['/signin']" mat-raised-button color="primary">Sign in</button>
         <button [routerLink]="['/signup']" mat-raised-button color="primary" class="signup">Sign up</button>
