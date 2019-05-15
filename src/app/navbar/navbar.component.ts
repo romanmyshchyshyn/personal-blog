@@ -20,8 +20,4 @@ export class NavbarComponent implements OnInit {
   signout() {
     this.auth.signout();
   }
-
-  test() {
-    console.log(this.auth.user);    
-  }
 }

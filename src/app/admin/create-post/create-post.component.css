@@ -1,0 +1,33 @@
+.container {
+    max-width: 50em;
+    margin: 0 auto;
+    padding: 2em;    
+}
+
+.container form {
+    display: flex;
+    flex-flow: column;
+}
+
+.flex-wrapper {
+    display: flex;
+    padding-bottom: 20px;
+}
+
+.flex-items-wrapper {
+    margin-right: 20px;
+    width: 50%;
+}
+
+.flex-items-wrapper:last-child() {
+    margin-right: 0;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.post-preview-content-text {
+    overflow-wrap: break-word;
+    max-height: 100px;
+}

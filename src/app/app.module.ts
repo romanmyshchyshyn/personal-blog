@@ -19,6 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavbarModule } from './navbar/navbar.module';
 import { FooterModule } from './footer/footer.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { BlogModule } from './blog/blog.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -31,10 +33,13 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     HttpClientModule,
     SigninModule,
     SignupModule,
-    AppRoutingModule,
     AuthModule,
     NavbarModule,
     FooterModule,
+    BlogModule,
+    AdminModule,
+
+    AppRoutingModule,
         
     // Angular Material
     MatFormFieldModule,
