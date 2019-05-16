@@ -22,6 +22,7 @@
           <ng-scrollbar [compact]="true" [trackX]="true">
             <div>
                 <mat-card-header class="post-preview-text">
+                    <mat-card-subtitle>#{{previewPostedOn | date: 'MMMM dd, yyyy'}}</mat-card-subtitle>
                     <mat-card-title>{{title.value || previewTitle}}</mat-card-title>
                     <mat-card-subtitle>{{description.value || previewDescription}}</mat-card-subtitle>
                   </mat-card-header>

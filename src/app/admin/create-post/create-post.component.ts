@@ -13,6 +13,7 @@ export class CreatePostComponent implements OnInit {
 
   previewTitle: string = "Title";
   previewDescription: string = "Description";
+  previewPostedOn: Date = new Date();
 
   faSpinner = faSpinner;
   faFolderOpen = faFolderOpen;
