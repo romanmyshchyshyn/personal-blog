@@ -19,8 +19,22 @@
     width: 50%;
 }
 
-.flex-items-wrapper:last-child() {
+.flex-items-wrapper:last-child {
     margin-right: 0;
+}
+
+.post-preview-card {
+    max-height: 500px;
+    overflow-x: hidden;
+    padding: 0;
+}
+
+.post-preview-image {
+    width: 100%;
+}
+
+.post-preview-text {
+    padding: 16px;
 }
 
 .full-width {
@@ -29,5 +43,4 @@
 
 .post-preview-content-text {
     overflow-wrap: break-word;
-    max-height: 100px;
 }

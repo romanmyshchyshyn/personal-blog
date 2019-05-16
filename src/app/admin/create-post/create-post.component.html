@@ -12,20 +12,22 @@
         </mat-form-field>
         <input type="file" formControlName="image" required (change)="handleFileSelect($event)">
         <mat-form-field class="full-width">
-          <textarea rows="23" #content matInput required formControlName="content" placeholder="Content"></textarea>
+          <textarea rows="21" #content matInput required formControlName="content" placeholder="Content"></textarea>
         </mat-form-field>
       </div>
-        <mat-card class="flex-items-wrapper">
-          <mat-card-header>
-            <mat-card-title>{{title.value || previewTitle}}</mat-card-title>
-            <mat-card-subtitle>{{description.value || previewDescription}}</mat-card-subtitle>
-          </mat-card-header>
-          <img mat-card-image [src]="safeUrl || '../../assets/img/default-post-image.jpg'" alt="Image">
-            <mat-card-content>
-              <ng-scrollbar>
-                <p class="post-preview-content-text" [innerHtml]="content.value"></p>
-              </ng-scrollbar>  
-            </mat-card-content>        
+        <mat-card class="flex-items-wrapper post-preview-card">
+          <ng-scrollbar [compact]="true" [trackX]="true">
+            <div>
+                <mat-card-header class="post-preview-text">
+                    <mat-card-title>{{title.value || previewTitle}}</mat-card-title>
+                    <mat-card-subtitle>{{description.value || previewDescription}}</mat-card-subtitle>
+                  </mat-card-header>
+                  <img class="post-preview-image" [src]="safeUrl || '../../assets/img/default-post-image.jpg'" alt="Image">
+                    <mat-card-content class="post-preview-text">
+                      <p class="post-preview-content-text" [innerHtml]="content.value"></p>
+                    </mat-card-content>
+            </div>  
+          </ng-scrollbar>      
         </mat-card>
     </div>
     <button mat-raised-button color="primary" [disabled]="loading || !createPostForm.valid" type="submit">
