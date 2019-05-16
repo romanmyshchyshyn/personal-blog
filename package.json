@@ -28,7 +28,8 @@
     "@fortawesome/free-solid-svg-icons": "~5.8.2",
     "@fortawesome/angular-fontawesome": "~0.3.0",
     "@fortawesome/fontawesome-svg-core": "~1.2.18",
-    "ngx-scrollbar": "~4.1.1"
+    "ngx-scrollbar": "~4.1.1",
+    "ngx-material-file-input": "~1.1.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.13.0",

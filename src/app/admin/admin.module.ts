@@ -7,6 +7,8 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule } from '@angular/material';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
+
 
 @NgModule({
   declarations: [CreatePostComponent],
@@ -21,7 +23,8 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
     MatButtonModule,
     FontAwesomeModule,
     MatCardModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+    MaterialFileInputModule
   ],
   exports: [
     CreatePostComponent

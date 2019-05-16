@@ -9,10 +9,13 @@
         </mat-form-field>
         <mat-form-field class="full-width">
           <input type="text" #description matInput required formControlName="description" placeholder="Description">
-        </mat-form-field>
-        <input type="file" formControlName="image" required (change)="handleFileSelect($event)">
+        </mat-form-field>        
         <mat-form-field class="full-width">
-          <textarea rows="21" #content matInput required formControlName="content" placeholder="Content"></textarea>
+            <ngx-mat-file-input formControlName="image" placeholder="Image" required (change)="handleFileSelect($event)"></ngx-mat-file-input>
+            <fa-icon [icon]="faFolderOpen" matSuffix></fa-icon>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <textarea rows="19" #content matInput required formControlName="content" placeholder="Content"></textarea>
         </mat-form-field>
       </div>
         <mat-card class="flex-items-wrapper post-preview-card">
