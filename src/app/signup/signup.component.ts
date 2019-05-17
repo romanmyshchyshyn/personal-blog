@@ -35,6 +35,7 @@ export class SignupComponent implements OnInit {
   onSubmit() {
     this.failed = false;
     this.loading = true;
+    
     const signupModel: SignupModel = {
       name: this.signupForm.get('name').value,
       email: this.signupForm.get('email').value,

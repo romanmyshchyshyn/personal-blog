@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { faSpinner, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { PostService } from '../post.service';
+import { Post } from 'src/app/models/post';
+import { AuthService } from 'src/app/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-post',
@@ -25,7 +29,13 @@ export class CreatePostComponent implements OnInit {
   imageSchema: string = "data:image/jpeg;charset=utf-8;base64, ";
   safeUrl: SafeUrl;
 
-  constructor(private fb: FormBuilder, private sanitizer: DomSanitizer) { }
+  constructor(
+    private fb: FormBuilder, 
+    private sanitizer: DomSanitizer,
+    private postService: PostService,
+    private auth: AuthService,
+    private router: Router,) 
+    { }
 
   ngOnInit() {
     this.createPostForm = this.fb.group({
@@ -34,6 +44,31 @@ export class CreatePostComponent implements OnInit {
       content: ['', Validators.required],
       image: ['', Validators.required]
     });
+  }
+
+  onSubmit() {
+    this.failed = false;
+    this.loading = true;
+
+    const post: Post = {
+      id: null,
+      title: this.createPostForm.get('title').value,
+      description: this.createPostForm.get('description').value,
+      postedOn: new Date(),
+      content: this.createPostForm.get('content').value,
+      image: this.base64textString
+    };
+
+    this.postService.add(post).subscribe(
+      (data) => {
+        this.router.navigate([this.auth.redirectUrl || '/']);
+      },
+      (error) => {
+        console.log(error);
+        this.failed = true;
+        this.loading = false;
+      }
+    );
   }
 
   handleFileSelect(evt){

@@ -13,6 +13,6 @@
 }
 
 .wrapper {
-  padding-top: 65px;
   flex-grow: 1;
+  padding: 65px 26px 16px 31px;
 }

@@ -8,12 +8,15 @@ import { MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule } fr
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { PostService } from './post.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
   declarations: [CreatePostComponent],
   imports: [
     CommonModule,
+    HttpClientModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
@@ -28,6 +31,9 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
   ],
   exports: [
     CreatePostComponent
+  ],
+  providers: [
+    PostService
   ]
 })
 export class AdminModule { }

@@ -1,0 +1,21 @@
+.post-preview-card {
+    padding: 0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.post-preview-image {
+    width: 100%;
+}
+
+.post-preview-text {
+    padding: 16px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.post-preview-content-text {
+    overflow-wrap: break-word;
+}

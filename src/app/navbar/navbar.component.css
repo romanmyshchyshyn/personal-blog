@@ -34,3 +34,7 @@ button.signup {
     display: flex;
     align-items: center;
 }
+
+.navbar {
+    z-index: 10;
+}

@@ -31,15 +31,13 @@ export class AuthService {
     return this.http.post(this.signinUrl, model).pipe(
       tap((token: any) =>  {
         this.token = token;
-        this.user = { name: model.name};
+        this.user = { name: model.name };
       }),
     );
   }
 
   signup(model: SignupModel): Observable<any> {
-    return this.http.post(this.signupUrl, model).pipe(
-      tap((token: any) =>  this.token = token),
-    );
+    return this.http.post(this.signupUrl, model).pipe();
   }
 
   get isSignedin(): boolean {
