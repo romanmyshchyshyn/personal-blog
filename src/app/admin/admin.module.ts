@@ -10,6 +10,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { PostService } from './post.service';
 import { HttpClientModule } from '@angular/common/http';
+import { BlogModule } from '../blog/blog.module';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     FontAwesomeModule,
     MatCardModule,
     NgScrollbarModule,
-    MaterialFileInputModule
+    MaterialFileInputModule,
+    BlogModule
   ],
   exports: [
     CreatePostComponent

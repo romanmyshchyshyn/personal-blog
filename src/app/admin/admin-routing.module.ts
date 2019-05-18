@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: 'create-post',
     component: CreatePostComponent
+  },
+  {
+    path: 'create-post/:id',
+    component: CreatePostComponent
   }
 ];
 

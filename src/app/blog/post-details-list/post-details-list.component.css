@@ -9,28 +9,3 @@ ul {
     padding-top: 20px;
     font-size: 30px;
 }
-
-.date {
-    color: grey;
-    font-size: 15px;
-    margin-bottom: 0px;
-}
-
-.title {
-    font-size: 25px;
-    border-bottom: 1px solid rgba(63, 81, 181, 1);
-    display: inline-block;
-    padding-bottom: 5px;
-    transition: 0.5s all;
-    outline: none;
-    cursor: pointer;
-}
-
-.title:hover {
-    background-color: rgba(63, 81, 181, 0.4);
-}
-
-.description {
-    margin-bottom: 20px;
-    font-size: 15px;
-}

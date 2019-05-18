@@ -15,4 +15,5 @@
 .wrapper {
   flex-grow: 1;
   padding: 65px 26px 16px 31px;
+  background-color: #fff;
 }

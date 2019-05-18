@@ -30,4 +30,8 @@ export class PostService {
   get(id: string): Observable<Post> {
     return this.http.get<Post>(this.postUrl + `/${id}`).pipe();
   }
+
+  update(post: Post): Observable<any> {
+    return this.http.put(this.postUrl, post).pipe();
+  }
 }

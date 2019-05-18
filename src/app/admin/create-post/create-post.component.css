@@ -29,6 +29,12 @@
     padding: 0;
 }
 
+.post-preview-title {
+    font-weight: 900;
+    font-size: 25px;
+    line-height: 25px;
+}
+
 .post-preview-image {
     width: 100%;
 }

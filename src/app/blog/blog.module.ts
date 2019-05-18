@@ -5,26 +5,30 @@ import { PostDetailsListComponent } from './post-details-list/post-details-list.
 import { PostDetailsComponent } from './post-details/post-details.component';
 import { PostComponent } from './post/post.component';
 import { BlogRoutingModule } from './blog-routing.module';
-import { MatListModule, MatDividerModule, MatCardModule } from '@angular/material';
+import { MatListModule, MatDividerModule, MatCardModule, MatButtonModule } from '@angular/material';
+import { PostFooterComponent } from './post-footer/post-footer.component';
 
 @NgModule({
   declarations: [
     BlogComponent,
     PostDetailsListComponent, 
     PostDetailsComponent, 
-    PostComponent],
+    PostComponent, 
+    PostFooterComponent],
   imports: [
     CommonModule,
     BlogRoutingModule,
     MatListModule,
     MatDividerModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule
   ],
   exports: [
     BlogComponent,
     PostDetailsListComponent,
     PostDetailsComponent,
-    PostComponent
+    PostComponent,
+    PostFooterComponent
   ]
 })
 export class BlogModule { }

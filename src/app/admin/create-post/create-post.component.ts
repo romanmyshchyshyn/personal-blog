@@ -5,7 +5,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { PostService } from '../post.service';
 import { Post } from 'src/app/models/post';
 import { AuthService } from 'src/app/auth/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-create-post',
@@ -29,15 +29,45 @@ export class CreatePostComponent implements OnInit {
   imageSchema: string = "data:image/jpeg;charset=utf-8;base64, ";
   safeUrl: SafeUrl;
 
+  updatePostId: string;
+
+  editorTitle: string;
+
   constructor(
     private fb: FormBuilder, 
     private sanitizer: DomSanitizer,
     private postService: PostService,
     private auth: AuthService,
-    private router: Router,) 
+    private router: Router,
+    private route: ActivatedRoute) 
     { }
 
   ngOnInit() {
+    this.editorTitle = 'Create post';
+    
+    this.updatePostId = this.route.snapshot.paramMap.get('id');
+
+    if (this.updatePostId) {
+      this.editorTitle = 'Update post';
+       this.postService.get(this.updatePostId).subscribe(
+        (data: Post) => {
+          this.createPostForm.patchValue({
+            title: data.title,
+            description: data.description,
+            content: data.content,
+            image: this.sanitizer.bypassSecurityTrustUrl(data.image),
+          });
+
+          this.safeUrl = this.sanitizer.bypassSecurityTrustUrl(data.image);
+          this.base64textString = data.image;
+          this.previewPostedOn = data.postedOn;
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
+    }
+
     this.createPostForm = this.fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
@@ -59,16 +89,31 @@ export class CreatePostComponent implements OnInit {
       image: this.base64textString
     };
 
-    this.postService.add(post).subscribe(
-      (data) => {
-        this.router.navigate([this.auth.redirectUrl || '/']);
-      },
-      (error) => {
-        console.log(error);
-        this.failed = true;
-        this.loading = false;
-      }
-    );
+    if (this.updatePostId) {
+      post.id = this.updatePostId;
+      this.postService.update(post).subscribe(
+        (data) => {
+          this.router.navigate([this.auth.redirectUrl || '/']);
+        },
+        (error) => {
+          console.log(error);
+          this.failed = true;
+          this.loading = false;
+        }
+      );
+    }
+    else {
+      this.postService.add(post).subscribe(
+        (data) => {
+          this.router.navigate([this.auth.redirectUrl || '/']);
+        },
+        (error) => {
+          console.log(error);
+          this.failed = true;
+          this.loading = false;
+        }
+      );
+    }    
   }
 
   handleFileSelect(evt){
