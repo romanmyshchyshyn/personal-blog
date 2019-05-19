@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { Post } from 'src/app/models/post';
+import { Post } from 'src/app/shared/models/post';
 import { faFolderOpen, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { CanComponentDeactivate } from 'src/app/shared/guards/candeactivate.guard';
 import { Observable } from 'rxjs';
