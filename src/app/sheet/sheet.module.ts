@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UnsavedChangesSheetComponent } from './unsaved-changes-sheet/unsaved-changes-sheet.component';
 import { MatBottomSheetModule, MatButtonModule, MatDividerModule } from '@angular/material';
+import { DeleteSheetComponent } from './delete-sheet/delete-sheet.component';
 
 @NgModule({
   declarations: [
-    UnsavedChangesSheetComponent
+    UnsavedChangesSheetComponent,
+    DeleteSheetComponent
   ],
   imports: [
     CommonModule,
@@ -14,7 +16,8 @@ import { MatBottomSheetModule, MatButtonModule, MatDividerModule } from '@angula
     MatDividerModule
   ],
   exports: [
-    UnsavedChangesSheetComponent
+    UnsavedChangesSheetComponent,
+    DeleteSheetComponent
   ]
 })
 export class SheetModule { }

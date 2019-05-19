@@ -7,6 +7,7 @@ import { PostComponent } from './post/post.component';
 import { BlogRoutingModule } from './blog-routing.module';
 import { MatListModule, MatDividerModule, MatCardModule, MatButtonModule } from '@angular/material';
 import { PostFooterComponent } from './post-footer/post-footer.component';
+import { AdminModule } from '../admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { PostFooterComponent } from './post-footer/post-footer.component';
   imports: [
     CommonModule,
     BlogRoutingModule,
+    AdminModule,
     MatListModule,
     MatDividerModule,
     MatCardModule,

@@ -9,19 +9,21 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { PostService } from './post.service';
 import { HttpClientModule } from '@angular/common/http';
-import { BlogModule } from '../blog/blog.module';
 import { PostEditorComponent } from './post-editor/post-editor.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
 import { PostCreateComponent } from './post-create/post-create.component';
 import { UnsavedChangesSheetComponent } from '../sheet/unsaved-changes-sheet/unsaved-changes-sheet.component';
 import { SheetModule } from '../sheet/sheet.module';
+import { PostActionsComponent } from './post-actions/post-actions.component';
+import { DeleteSheetComponent } from '../sheet/delete-sheet/delete-sheet.component';
 
 
 @NgModule({
   declarations: [
     PostEditorComponent, 
     PostEditComponent, 
-    PostCreateComponent
+    PostCreateComponent,
+    PostActionsComponent
   ],
   imports: [
     CommonModule,
@@ -38,19 +40,20 @@ import { SheetModule } from '../sheet/sheet.module';
     NgScrollbarModule,
     MaterialFileInputModule,
     MatBottomSheetModule,
-    BlogModule,
     SheetModule
   ],
   exports: [
     PostEditorComponent, 
     PostEditComponent, 
-    PostCreateComponent
+    PostCreateComponent,
+    PostActionsComponent
   ],
   providers: [
     PostService
   ],
   entryComponents: [
-    UnsavedChangesSheetComponent
+    UnsavedChangesSheetComponent,
+    DeleteSheetComponent
   ]
 })
 export class AdminModule { }

@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { Post } from 'src/app/shared/models/post';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-post-details',
@@ -15,5 +16,4 @@ export class PostDetailsComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }
