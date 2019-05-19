@@ -1,0 +1,47 @@
+<div class="container">
+  <h1>{{editorTitle}}</h1>
+
+  <form autocomplete="off" [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <div class="flex-wrapper">
+      <div class="flex-items-wrapper">
+        <mat-form-field class="full-width">
+          <input type="text" #title matInput required autofocus formControlName="title" placeholder="Title">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input type="text" #description matInput required formControlName="description" placeholder="Description">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <ngx-mat-file-input formControlName="image" placeholder="Image" (change)="handleFileSelect($event)">
+          </ngx-mat-file-input>
+          <fa-icon [icon]="faFolderOpen" matSuffix></fa-icon>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <textarea rows="19" #content matInput required formControlName="content" placeholder="Content"></textarea>
+        </mat-form-field>
+      </div>
+      <mat-card class="flex-items-wrapper post-preview-card">
+        <ng-scrollbar [compact]="true" [trackX]="true">
+          <div>
+            <mat-card-header class="post-preview-text">
+              <mat-card-subtitle>#{{previewPostedOn | date: 'MMMM dd, yyyy'}}</mat-card-subtitle>
+              <mat-card-title class="post-preview-title">{{title.value || previewTitle}}</mat-card-title>
+              <mat-card-subtitle>{{description.value || previewDescription}}</mat-card-subtitle>
+            </mat-card-header>
+            <img class="post-preview-image" [src]="safeImageUrl || '../../assets/img/default-post-image.jpg'" alt="Image">
+            <mat-card-content class="post-preview-text">
+              <p class="post-preview-content-text" [innerHtml]="content.value"></p>
+            </mat-card-content>
+            <app-post-footer></app-post-footer>
+          </div>
+        </ng-scrollbar>
+      </mat-card>
+    </div>
+    <button mat-raised-button color="primary" [disabled]="loading || !postForm.valid" type="submit">
+      {{editorTitle}}
+      <fa-icon [icon]="faSpinner" spin="true" *ngIf="loading"></fa-icon>
+    </button>
+    <p class="text-warn pad-v-sm text-center" *ngIf="failed">
+      Could not create post.
+    </p>
+  </form>
+</div>

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CreatePostComponent } from './create-post/create-post.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminRoutingModule } from './admin-routing.module';
@@ -11,10 +10,17 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { PostService } from './post.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BlogModule } from '../blog/blog.module';
+import { PostEditorComponent } from './post-editor/post-editor.component';
+import { PostEditComponent } from './post-edit/post-edit.component';
+import { PostCreateComponent } from './post-create/post-create.component';
 
 
 @NgModule({
-  declarations: [CreatePostComponent],
+  declarations: [
+    PostEditorComponent, 
+    PostEditComponent, 
+    PostCreateComponent
+  ],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -32,7 +38,9 @@ import { BlogModule } from '../blog/blog.module';
     BlogModule
   ],
   exports: [
-    CreatePostComponent
+    PostEditorComponent, 
+    PostEditComponent, 
+    PostCreateComponent
   ],
   providers: [
     PostService
