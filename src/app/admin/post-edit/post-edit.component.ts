@@ -18,8 +18,9 @@ export class PostEditComponent implements OnInit, CanComponentDeactivate {
   post: Post;
   editorTitle: string = "Update post";
   isDirty: boolean = false;
+  isSubmitted: boolean = false;
 
-  loading = false;
+  loading: boolean = false;
   failed: boolean;
 
   sheetRef: MatBottomSheetRef<UnsavedChangesSheetComponent>;
@@ -43,6 +44,7 @@ export class PostEditComponent implements OnInit, CanComponentDeactivate {
   onSubmit($event) {
     this.failed = false;
     this.loading = true;
+    this.isSubmitted = true;
 
     this.postService.update($event).subscribe(
       data => this.router.navigate([this.auth.redirectUrl || '/']),
@@ -59,7 +61,7 @@ export class PostEditComponent implements OnInit, CanComponentDeactivate {
   }
 
   canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {
-    if (this.isDirty) {
+    if (this.isDirty && !this.isSubmitted) {
       this.sheetRef = this.bottomSheet.open(UnsavedChangesSheetComponent);
 
       return this.sheetRef.afterDismissed();

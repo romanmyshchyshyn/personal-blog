@@ -7,7 +7,7 @@
             </mat-card-header>
             <img class="post-image" [src]="safeImageUrl || '../../assets/img/default-post-image.jpg'" alt="Image">
               <mat-card-content class="post-text">
-                <p class="post-content-text" [innerHtml]="post?.content"></p>
+                <p class="post-content-text" [innerHtml]="post?.article?.content"></p>
               </mat-card-content>
               <app-post-footer></app-post-footer>                
       </div>  
