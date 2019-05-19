@@ -3,8 +3,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Post } from 'src/app/shared/models/post';
 import { faFolderOpen, faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { CanComponentDeactivate } from 'src/app/shared/guards/candeactivate.guard';
-import { Observable } from 'rxjs';
+import { Article } from 'src/app/shared/models/article';
 
 @Component({
   selector: 'app-post-editor',
@@ -63,13 +62,17 @@ export class PostEditorComponent implements OnInit, OnChanges {
   }
 
   onSubmit() {
+    const article: Article = {
+      content: this.postForm.get('content').value,
+      image: this.base64textStringImage
+    } as Article;
+
     const post: Post = {
       id: this.post ? this.post.id : null,
       title: this.postForm.get('title').value,
       description: this.postForm.get('description').value,
       postedOn: this.post ? this.post.postedOn : new Date(),
-      content: this.postForm.get('content').value,
-      image: this.base64textStringImage
+      article: article
     };
     
     this.submitted.emit(post);
@@ -81,11 +84,11 @@ export class PostEditorComponent implements OnInit, OnChanges {
       this.postForm.patchValue({
         title: postChangeProperty.currentValue.title,
         description: postChangeProperty.currentValue.description,
-        content: postChangeProperty.currentValue.content        
+        content: postChangeProperty.currentValue.article.content        
       });
 
       this.previewPostedOn = postChangeProperty.currentValue.postedOn;
-      this.setImageProperties(postChangeProperty.currentValue.image);
+      this.setImageProperties(postChangeProperty.currentValue.article.image);
     }
   }
 

@@ -13,7 +13,7 @@ export class PostComponent implements OnInit {
 
   post: Post;
 
-  safeUrl: SafeUrl;
+  safeImageUrl: SafeUrl;
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -26,7 +26,7 @@ export class PostComponent implements OnInit {
     this.postService.get(id).subscribe(
       (data: Post) => {
         this.post = data;
-        this.safeUrl = this.sanitizer.bypassSecurityTrustUrl(data.image);
+        this.safeImageUrl = this.sanitizer.bypassSecurityTrustUrl(data.article.image);
       } 
     );
   }
