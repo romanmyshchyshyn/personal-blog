@@ -2,5 +2,6 @@
                  (submitted)="onSubmit($event)" 
                  [editorTitle]="editorTitle"
                  [failed]="failed"
-                 [loading]="loading">
+                 [loading]="loading"
+                 (dirty)="onDirty($event)">
 </app-post-editor>

@@ -2,15 +2,18 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PostCreateComponent } from './post-create/post-create.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
+import { CanDeactivateGuard } from '../shared/guards/candeactivate.guard';
 
 const routes: Routes = [
   {
     path: 'post-create',
-    component: PostCreateComponent
+    component: PostCreateComponent,
+    canDeactivate: [CanDeactivateGuard]
   },
   {
     path: 'post-edit/:id',
-    component: PostEditComponent
+    component: PostEditComponent,
+    canDeactivate: [CanDeactivateGuard]
   }
 ];
 

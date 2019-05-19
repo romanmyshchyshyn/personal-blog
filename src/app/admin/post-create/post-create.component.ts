@@ -2,23 +2,32 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from '../post.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
+import { CanComponentDeactivate } from 'src/app/shared/guards/candeactivate.guard';
+import { Observable } from 'rxjs';
+import { MatBottomSheetRef, MatBottomSheet } from '@angular/material';
+import { UnsavedChangesSheetComponent } from 'src/app/sheet/unsaved-changes-sheet/unsaved-changes-sheet.component';
 
 @Component({
   selector: 'app-post-create',
   templateUrl: './post-create.component.html',
   styleUrls: ['./post-create.component.css']
 })
-export class PostCreateComponent implements OnInit {
+export class PostCreateComponent implements OnInit, CanComponentDeactivate {
 
   editorTitle: string = "Create post";
 
   loading = false;
   failed: boolean;
 
+  isDirty: boolean = false;
+
+  sheetRef: MatBottomSheetRef<UnsavedChangesSheetComponent>;
+
   constructor(
     private postService: PostService,
     private auth: AuthService,
-    private router: Router) { }
+    private router: Router,
+    private bottomSheet: MatBottomSheet) { }
 
   ngOnInit() {
   }
@@ -35,5 +44,19 @@ export class PostCreateComponent implements OnInit {
         this.loading = false;
       }     
     );
+  }
+
+  onDirty($event) {
+    this.isDirty = $event;
+  }
+
+  canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {
+    if (this.isDirty) {
+      this.sheetRef = this.bottomSheet.open(UnsavedChangesSheetComponent);
+
+      return this.sheetRef.afterDismissed();
+    }
+
+    return true;
   }
 }

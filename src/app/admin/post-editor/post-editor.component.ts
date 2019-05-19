@@ -1,11 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { PostService } from '../post.service';
-import { AuthService } from 'src/app/auth/auth.service';
-import { Router, ActivatedRoute } from '@angular/router';
 import { Post } from 'src/app/models/post';
 import { faFolderOpen, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { CanComponentDeactivate } from 'src/app/shared/guards/candeactivate.guard';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-post-editor',
@@ -13,7 +12,6 @@ import { faFolderOpen, faSpinner } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./post-editor.component.css']
 })
 export class PostEditorComponent implements OnInit, OnChanges {
-
   postForm: FormGroup;
 
   previewTitle: string = "Title";
@@ -42,6 +40,9 @@ export class PostEditorComponent implements OnInit, OnChanges {
   @Output()
   submitted = new EventEmitter<Post>();
 
+  @Output()
+  dirty = new EventEmitter<boolean>();
+
   constructor(
     private fb: FormBuilder,
     private sanitizer: DomSanitizer) { }
@@ -53,6 +54,12 @@ export class PostEditorComponent implements OnInit, OnChanges {
       content: ['', Validators.required],
       image: ['']
     });
+
+    this.postForm.valueChanges.subscribe(
+      () => {
+        this.dirty.emit(this.postForm.dirty);
+      }
+    );
   }
 
   onSubmit() {
