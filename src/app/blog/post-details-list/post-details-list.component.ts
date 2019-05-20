@@ -22,5 +22,12 @@ export class PostDetailsListComponent implements OnInit {
         console.log(error);
       }
     );
+
+    this.postService.currentPostDeleted.subscribe(
+      (id: string) => this.posts = this.posts.filter(
+        p => p.id != id
+      ),
+      (error) => console.log(error)
+    );
   }
 }

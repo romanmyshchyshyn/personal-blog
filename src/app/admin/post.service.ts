@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Post } from '../shared/models/post';
 import { environment } from '../../environments/environment';
 
@@ -10,6 +10,9 @@ import { environment } from '../../environments/environment';
 export class PostService {
 
   private postUrl: string = environment.apiUrl + '/post';
+
+  private postDeletedSource = new BehaviorSubject<string>(" ");
+  currentPostDeleted = this.postDeletedSource.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -36,6 +39,7 @@ export class PostService {
   }
 
   delete(id: string): Observable<any> {
+    this.postDeletedSource.next(id);
     return this.http.delete(this.postUrl + `/${id}`).pipe();
   }
 }
