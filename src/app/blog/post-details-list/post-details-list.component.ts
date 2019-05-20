@@ -29,5 +29,10 @@ export class PostDetailsListComponent implements OnInit {
       ),
       (error) => console.log(error)
     );
+
+    this.postService.currentPostsSearch.subscribe(
+      (posts: Post[]) => this.posts = posts,
+      (error) => console.log(error)
+    );
   }
 }

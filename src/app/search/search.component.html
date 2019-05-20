@@ -1,5 +1,5 @@
 <form autocomplete="off">
     <mat-form-field class="full-width" floatLabel="never" color="primary">
-        <input class="search-input" matInput placeholder="Search">
+        <input #search class="search-input" (input)="onInput(search.value)" matInput placeholder="Search">
     </mat-form-field>
 </form>
