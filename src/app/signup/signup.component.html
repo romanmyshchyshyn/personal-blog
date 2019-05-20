@@ -13,6 +13,10 @@
     <mat-form-field>
       <input type="password" matInput required formControlName="password" placeholder="Password">
     </mat-form-field>
+    <mat-form-field>
+      <input type="password" matInput required formControlName="confirmPassword" placeholder="Confirm Password">
+      <mat-error *ngIf="signupForm.controls.confirmPassword.errors?.mustMatch">Passwords do not match</mat-error>
+    </mat-form-field>
     <button mat-raised-button color="primary" [disabled]="loading || !signupForm.valid" type="submit">
       Sign up
       <fa-icon [icon]="faSpinner" spin="true" *ngIf="loading"></fa-icon>

@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 import { SignupModel } from './signup-model';
+import { MustMatch } from '../shared/validators/must-match.validator';
 
 @Component({
   selector: 'app-signup',
@@ -28,7 +29,11 @@ export class SignupComponent implements OnInit {
     this.signupForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required]
+    },
+    {
+      validator: MustMatch('password', 'confirmPassword')
     });
   }
 
