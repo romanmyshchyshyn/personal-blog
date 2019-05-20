@@ -20,8 +20,6 @@ export class SearchComponent implements OnInit {
   }
 
   onInput(data: string) {
-    console.log("onInput:" + data);
-    
     this.postService.search(data);
     this.router.navigate([this.auth.redirectUrl || '/'])
   }

@@ -4,7 +4,6 @@ import { Observable, BehaviorSubject, Subject } from 'rxjs';
 import { Post } from '../shared/models/post';
 import { environment } from '../../environments/environment';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { PostFilter } from '../shared/filters/post.filter';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +11,7 @@ import { PostFilter } from '../shared/filters/post.filter';
 export class PostService {
 
   private postUrl: string = environment.apiUrl + '/post';
+  private postSearchUrl: string = this.postUrl + '/search';
 
   private postDeletedSource = new BehaviorSubject<string>(" ");
   currentPostDeleted = this.postDeletedSource.asObservable();
@@ -20,23 +20,18 @@ export class PostService {
   currentPostsSearch = this.postsSearchSource.pipe(
     debounceTime(300),
     distinctUntilChanged(),
-    switchMap((data: string) => this.getByFilter(data))
+    switchMap((data: string) => this.getSearhPosts(data))
   );
 
   constructor(private http: HttpClient) { }
 
-  getByFilter(data: string): Observable<Post[]> {
-    console.log("getByFilter: " + data);
-    
-
-    return this.http.get<Post[]>(this.postUrl + '/search', {
+  private getSearhPosts(data: string): Observable<Post[]> {
+    return this.http.get<Post[]>(this.postSearchUrl, {
       params : {data}
     }).pipe();
   }
 
   search(data: string) {
-    console.log("NEXT: " + data);
-    
     this.postsSearchSource.next(data)
   }
 
