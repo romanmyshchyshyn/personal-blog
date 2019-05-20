@@ -27,7 +27,8 @@
               <mat-card-title class="post-preview-title">{{title.value || previewTitle}}</mat-card-title>
               <mat-card-subtitle>{{description.value || previewDescription}}</mat-card-subtitle>
             </mat-card-header>
-            <img class="post-preview-image" [src]="safeImageUrl || '../../assets/img/default-post-image.jpg'" alt="Image">
+            <img class="post-preview-image" [src]="safeImageUrl || '../../assets/img/default-post-image.jpg'"
+              alt="Image">
             <mat-card-content class="post-preview-text">
               <p class="post-preview-content-text" [innerHtml]="content.value"></p>
             </mat-card-content>

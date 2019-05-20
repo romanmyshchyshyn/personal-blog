@@ -1,33 +1,33 @@
 <mat-toolbar class="navbar">
   <mat-toolbar-row>
     <button [routerLink]="['/']" mat-stroked-button>
-        <fa-icon class="logo" [icon]="faPuzzlePiece"></fa-icon>
-        <span>MyBlog</span>
+      <fa-icon class="logo" [icon]="faPuzzlePiece"></fa-icon>
+      <span>MyBlog</span>
     </button>
     <app-search class="spacer"></app-search>
     <div *ngIf="!auth.isSignedin">
-        <button [routerLink]="['/signin']" mat-stroked-button>Sign in</button>
-        <button [routerLink]="['/signup']" mat-stroked-button class="signup">Sign up</button>
+      <button [routerLink]="['/signin']" mat-stroked-button>Sign in</button>
+      <button [routerLink]="['/signup']" mat-stroked-button class="signup">Sign up</button>
     </div>
     <div class="navbar-items-wrapper" *ngIf="auth.isSignedin">
-        <img class="user-avatar" src="../../assets/img/default-user-avatar.jpg" alt="User avatar" />
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-            <fa-icon class="logo" [icon]="faEllipsisV"></fa-icon>
+      <img class="user-avatar" src="../../assets/img/default-user-avatar.jpg" alt="User avatar" />
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <fa-icon class="logo" [icon]="faEllipsisV"></fa-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <span>Signed in as <b>{{auth.user.name}}</b> </span>
         </button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item>
-              <span>Signed in as <b>{{auth.user.name}}</b> </span>
-            </button>
-            <mat-divider></mat-divider>
-            <button mat-menu-item [routerLink]="['/post-create']">
-              <span>Create post</span>
-            </button>
-            <mat-divider></mat-divider>
-            <button mat-menu-item (click)="signout()">
-              <fa-icon class="logo" [icon]="faSignOutAlt"></fa-icon>
-              <span>Sign out</span>
-            </button>            
-          </mat-menu>
+        <mat-divider></mat-divider>
+        <button mat-menu-item [routerLink]="['/post-create']">
+          <span>Create post</span>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="signout()">
+          <fa-icon class="logo" [icon]="faSignOutAlt"></fa-icon>
+          <span>Sign out</span>
+        </button>
+      </mat-menu>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

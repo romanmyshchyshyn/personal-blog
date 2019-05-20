@@ -1,9 +1,9 @@
 <div class="flex-wrapper">
-        <div class="flex-items-wrapper">
-                <h2 class="date">#{{post.postedOn | date: 'MMMM dd, yyyy'}}</h2>  
-                <h1 class="title" [routerLink]="['/blog', post.id]">{{post.title}}</h1>
-                <h3 class="description">{{post.description}}</h3>
-        </div>
-        <app-post-actions class="actions" [postId]="post.id"></app-post-actions>    
+  <div class="flex-items-wrapper">
+    <h2 class="date">#{{post.postedOn | date: 'MMMM dd, yyyy'}}</h2>
+    <h1 class="title" [routerLink]="['/blog', post.id]">{{post.title}}</h1>
+    <h3 class="description">{{post.description}}</h3>
+  </div>
+  <app-post-actions class="actions" [postId]="post.id"></app-post-actions>
 </div>
 <mat-divider></mat-divider>

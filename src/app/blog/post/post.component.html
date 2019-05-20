@@ -1,14 +1,14 @@
 <mat-card class="post-card">
-    <div>
-          <mat-card-header class="post-text">
-              <mat-card-subtitle>#{{post?.postedOn | date: 'MMMM dd, yyyy'}}</mat-card-subtitle>
-              <mat-card-title class="post-title">{{post?.title}}</mat-card-title>
-              <mat-card-subtitle>{{post?.description}}</mat-card-subtitle>
-            </mat-card-header>
-            <img class="post-image" [src]="safeImageUrl || '../../assets/img/default-post-image.jpg'" alt="Image">
-              <mat-card-content class="post-text">
-                <p class="post-content-text" [innerHtml]="post?.article?.content"></p>
-              </mat-card-content>
-              <app-post-footer></app-post-footer>                
-      </div>  
+  <div>
+    <mat-card-header class="post-text">
+      <mat-card-subtitle>#{{post?.postedOn | date: 'MMMM dd, yyyy'}}</mat-card-subtitle>
+      <mat-card-title class="post-title">{{post?.title}}</mat-card-title>
+      <mat-card-subtitle>{{post?.description}}</mat-card-subtitle>
+    </mat-card-header>
+    <img class="post-image" [src]="safeImageUrl || '../../assets/img/default-post-image.jpg'" alt="Image">
+    <mat-card-content class="post-text">
+      <p class="post-content-text" [innerHtml]="post?.article?.content"></p>
+    </mat-card-content>
+    <app-post-footer></app-post-footer>
+  </div>
 </mat-card>
