@@ -7,7 +7,6 @@ import { MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule, Mat
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
-import { PostService } from '../shared/services/post.service';
 import { HttpClientModule } from '@angular/common/http';
 import { PostEditorComponent } from './post-editor/post-editor.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
@@ -48,9 +47,7 @@ import { DeleteSheetComponent } from '../sheet/delete-sheet/delete-sheet.compone
     PostCreateComponent,
     PostActionsComponent
   ],
-  providers: [
-    PostService
-  ],
+  providers: [],
   entryComponents: [
     UnsavedChangesSheetComponent,
     DeleteSheetComponent
