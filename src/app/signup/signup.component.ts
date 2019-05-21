@@ -44,7 +44,8 @@ export class SignupComponent implements OnInit {
     const signupModel: SignupModel = {
       name: this.signupForm.get('name').value,
       email: this.signupForm.get('email').value,
-      password: this.signupForm.get('password').value
+      password: this.signupForm.get('password').value,
+      isSubscribed: false
     };
     this.auth.signup(signupModel).subscribe(
       (data) => {

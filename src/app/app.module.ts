@@ -23,6 +23,7 @@ import { BlogModule } from './blog/blog.module';
 import { AdminModule } from './admin/admin.module';
 import { SearchService } from './shared/services/search.service';
 import { PostService } from './shared/services/post.service';
+import { SubscribeService } from './shared/services/subscribe.service';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { PostService } from './shared/services/post.service';
   ],
   providers: [
     SearchService,
-    PostService
+    PostService,
+    SubscribeService
   ],
   bootstrap: [AppComponent]
 })

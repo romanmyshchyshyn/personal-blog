@@ -8,6 +8,7 @@ import { environment } from '../../environments/environment';
 import { SigninModel } from '../signin/signin-model';
 import { SignupModel } from '../signup/signup-model';
 import { User } from './user-model';
+import { SigninResult } from '../shared/models/signin-result';
 
 @Injectable({
   providedIn: 'root'
@@ -29,9 +30,9 @@ export class AuthService {
 
   signin(model: SigninModel): Observable<any> {
     return this.http.post(this.signinUrl, model).pipe(
-      tap((token: any) =>  {
-        this.token = token;
-        this.user = { name: model.name };
+      tap((result: SigninResult) =>  {
+        this.token = result.token;
+        this.user = { name: result.userName, isSubscribed: result.isSubscribed };
       }),
     );
   }

@@ -1,3 +1,4 @@
 export class User {
-    name: string
+    name: string;
+    isSubscribed: boolean
 }
