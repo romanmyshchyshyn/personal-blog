@@ -21,6 +21,7 @@ import { FooterModule } from './footer/footer.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { BlogModule } from './blog/blog.module';
 import { AdminModule } from './admin/admin.module';
+import { SearchService } from './shared/services/search.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { AdminModule } from './admin/admin.module';
     MatProgressBarModule,
     MatSidenavModule,
   ],
-  providers: [],
+  providers: [SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

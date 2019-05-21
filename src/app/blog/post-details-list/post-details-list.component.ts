@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from 'src/app/admin/post.service';
 import { Post } from 'src/app/shared/models/post';
+import { SearchService } from 'src/app/shared/services/search.service';
 
 @Component({
   selector: 'app-post-details-list',
@@ -11,18 +12,12 @@ export class PostDetailsListComponent implements OnInit {
   
   posts: Post[] = [];
 
-  constructor(private postService: PostService) { }
+  constructor(
+    private postService: PostService,
+    private searchService: SearchService
+    ) { }
 
   ngOnInit() {
-    this.postService.getAll().subscribe(
-      (data: Post[]) => {
-        this.posts = data;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-
     this.postService.currentPostDeleted.subscribe(
       (id: string) => this.posts = this.posts.filter(
         p => p.id != id
@@ -30,9 +25,11 @@ export class PostDetailsListComponent implements OnInit {
       (error) => console.log(error)
     );
 
-    this.postService.currentPostsSearch.subscribe(
+    this.searchService.currentSearch.subscribe(
       (posts: Post[]) => this.posts = posts,
       (error) => console.log(error)
     );
+
+    this.searchService.search();
   }
 }

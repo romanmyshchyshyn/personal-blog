@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PostService } from '../admin/post.service';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
+import { SearchService } from '../shared/services/search.service';
 
 @Component({
   selector: 'app-search',
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class SearchComponent implements OnInit {
 
   constructor(
-    private postService: PostService,
+    private searchService: SearchService,
     private auth: AuthService,
     private router: Router
     ) { }
@@ -20,7 +20,7 @@ export class SearchComponent implements OnInit {
   }
 
   onInput(data: string) {
-    this.postService.search(data);
-    this.router.navigate([this.auth.redirectUrl || '/'])
+    this.router.navigate([this.auth.redirectUrl || '/']);
+    this.searchService.search(data);    
   }
 }

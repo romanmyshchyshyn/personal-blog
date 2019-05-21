@@ -11,29 +11,11 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 export class PostService {
 
   private postUrl: string = environment.apiUrl + '/post';
-  private postSearchUrl: string = this.postUrl + '/search';
 
   private postDeletedSource = new BehaviorSubject<string>(" ");
   currentPostDeleted = this.postDeletedSource.asObservable();
 
-  private postsSearchSource = new Subject<string>();
-  currentPostsSearch = this.postsSearchSource.pipe(
-    debounceTime(300),
-    distinctUntilChanged(),
-    switchMap((data: string) => this.getSearhPosts(data))
-  );
-
   constructor(private http: HttpClient) { }
-
-  private getSearhPosts(data: string): Observable<Post[]> {
-    return this.http.get<Post[]>(this.postSearchUrl, {
-      params : {data}
-    }).pipe();
-  }
-
-  search(data: string) {
-    this.postsSearchSource.next(data)
-  }
 
   add(post: Post): Observable<any> {
     return this.http.post(this.postUrl, post).pipe();
