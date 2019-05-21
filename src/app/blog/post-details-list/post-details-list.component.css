@@ -9,3 +9,8 @@ ul {
     padding-top: 20px;
     font-size: 30px;
 }
+
+.paginator {
+    display: flex;
+    justify-content: center;
+}

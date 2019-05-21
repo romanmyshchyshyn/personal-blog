@@ -5,3 +5,10 @@
     <app-post-details [post]="post"></app-post-details>
   </li>
 </ul>
+
+<mat-paginator class="paginator"
+               [length]="length"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="onPageChange($event)">
+</mat-paginator>
