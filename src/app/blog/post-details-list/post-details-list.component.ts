@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PostService } from 'src/app/admin/post.service';
+import { PostService } from 'src/app/shared/services/post.service';
 import { Post } from 'src/app/shared/models/post';
 import { SearchService } from 'src/app/shared/services/search.service';
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Post } from 'src/app/shared/models/post';
 import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
-import { PostService } from 'src/app/admin/post.service';
+import { PostService } from 'src/app/shared/services/post.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

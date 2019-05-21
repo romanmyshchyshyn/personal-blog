@@ -7,7 +7,7 @@ import { MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule, Mat
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
-import { PostService } from './post.service';
+import { PostService } from '../shared/services/post.service';
 import { HttpClientModule } from '@angular/common/http';
 import { PostEditorComponent } from './post-editor/post-editor.component';
 import { PostEditComponent } from './post-edit/post-edit.component';

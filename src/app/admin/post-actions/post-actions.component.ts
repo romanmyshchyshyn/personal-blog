@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material';
 import { DeleteSheetComponent } from 'src/app/sheet/delete-sheet/delete-sheet.component';
-import { PostService } from '../post.service';
+import { PostService } from '../../shared/services/post.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
 
