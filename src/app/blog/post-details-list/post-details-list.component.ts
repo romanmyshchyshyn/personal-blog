@@ -33,6 +33,9 @@ export class PostDetailsListComponent implements OnInit, OnDestroy {
       (id: string) => {
         this.posts = this.posts.filter(p => p.id != id);
         --this.length;
+        if (this.posts.length == 0) {
+          this.paginator.previousPage();
+        }
       }
       ,
       (error) => console.log(error)
