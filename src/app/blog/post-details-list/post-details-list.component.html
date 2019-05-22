@@ -6,7 +6,8 @@
   </li>
 </ul>
 
-<mat-paginator class="paginator"
+<mat-paginator [style.visibility]="loading ? 'hidden' : 'visible'"
+               class="paginator"
                [length]="length"
                [pageSize]="pageSize"
                [pageSizeOptions]="pageSizeOptions"

@@ -16,6 +16,7 @@ export class PostDetailsListComponent implements OnInit {
   
   posts: Post[] = [];
   length: number = 10;
+  loading = false;
 
   constructor(
     private postService: PostService,
@@ -32,12 +33,17 @@ export class PostDetailsListComponent implements OnInit {
 
     this.paginator.pageIndex = this.searchService.pageIndex;
 
+    this.loading = true;
     this.searchService.currentSearch.subscribe(
       (result: SearchResult) => {
         this.posts = result.posts
         this.length = result.count
+        this.loading = false;
       },
-      (error) => console.log(error)
+      (error) => {
+        console.log(error);
+        this.loading = false;
+      }
     );
 
     this.searchService.search();

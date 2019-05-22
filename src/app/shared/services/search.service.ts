@@ -13,7 +13,7 @@ import { SearchResult } from '../models/search-result';
 export class SearchService {
 
   pageSize: number = 5;
-  pageSizeOptions: number[] = [1, 5, 10, 25];
+  pageSizeOptions: number[] = [3, 5, 10, 25];
   pageIndex: number = 0;
 
 
