@@ -30,9 +30,11 @@ export class PostDetailsListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.postDeleteSubscribe = this.postService.currentPostDeleted.subscribe(
-      (id: string) => this.posts = this.posts.filter(
-        p => p.id != id
-      ),
+      (id: string) => {
+        this.posts = this.posts.filter(p => p.id != id);
+        --this.length;
+      }
+      ,
       (error) => console.log(error)
     );
 
