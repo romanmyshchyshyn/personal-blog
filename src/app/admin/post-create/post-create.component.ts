@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PostService } from '../../shared/services/post.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
 import { CanComponentDeactivate } from 'src/app/shared/guards/candeactivate.guard';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { MatBottomSheetRef, MatBottomSheet } from '@angular/material';
 import { UnsavedChangesSheetComponent } from 'src/app/sheet/unsaved-changes-sheet/unsaved-changes-sheet.component';
 
@@ -12,7 +12,9 @@ import { UnsavedChangesSheetComponent } from 'src/app/sheet/unsaved-changes-shee
   templateUrl: './post-create.component.html',
   styleUrls: ['./post-create.component.css']
 })
-export class PostCreateComponent implements OnInit, CanComponentDeactivate {
+export class PostCreateComponent implements OnInit, OnDestroy, CanComponentDeactivate {
+
+  addSubscribe: Subscription;
 
   editorTitle: string = "Create post";
 
@@ -38,7 +40,7 @@ export class PostCreateComponent implements OnInit, CanComponentDeactivate {
     this.loading = true;
     this.isSubmitted = true;
 
-    this.postService.add($event).subscribe(
+    this.addSubscribe = this.postService.add($event).subscribe(
       data => this.router.navigate([this.auth.redirectUrl || '/']),
       error => {
         console.log(error);
@@ -60,5 +62,11 @@ export class PostCreateComponent implements OnInit, CanComponentDeactivate {
     }
 
     return true;
+  }
+
+  ngOnDestroy(): void {
+    if (this.addSubscribe) {
+      this.addSubscribe.unsubscribe();
+    }
   }
 }

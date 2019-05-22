@@ -1,17 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder } from '@angular/forms';
 import { SigninModel } from './signin-model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css']
 })
-export class SigninComponent implements OnInit {
+export class SigninComponent implements OnInit, OnDestroy {
+
+  signinSubscribe: Subscription;
+
   signinForm: FormGroup;
 
   faSpinner = faSpinner;
@@ -39,7 +43,7 @@ export class SigninComponent implements OnInit {
       name: this.signinForm.get('name').value,
       password: this.signinForm.get('password').value
     };
-    this.auth.signin(signinModel).subscribe(
+    this.signinSubscribe = this.auth.signin(signinModel).subscribe(
       (data) => {
         this.router.navigate([this.auth.redirectUrl || '/']);
       },
@@ -49,5 +53,9 @@ export class SigninComponent implements OnInit {
         this.loading = false;
       },
     );
+  }
+
+  ngOnDestroy(): void {
+    this.signinSubscribe.unsubscribe();
   }
 }

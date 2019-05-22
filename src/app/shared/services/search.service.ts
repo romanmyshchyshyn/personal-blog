@@ -22,7 +22,6 @@ export class SearchService {
 
   private searchSource = new Subject<SearchOptions>();
   currentSearch = this.searchSource.pipe(
-    distinctUntilChanged(),
     switchMap((options: SearchOptions) => this.getSearhPosts(options))
   );
 

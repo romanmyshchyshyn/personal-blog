@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PostService } from '../../shared/services/post.service';
 import { Post } from 'src/app/shared/models/post';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { CanComponentDeactivate } from 'src/app/shared/guards/candeactivate.guard';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material';
 import { UnsavedChangesSheetComponent } from 'src/app/sheet/unsaved-changes-sheet/unsaved-changes-sheet.component';
@@ -13,7 +13,10 @@ import { UnsavedChangesSheetComponent } from 'src/app/sheet/unsaved-changes-shee
   templateUrl: './post-edit.component.html',
   styleUrls: ['./post-edit.component.css']
 })
-export class PostEditComponent implements OnInit, CanComponentDeactivate {
+export class PostEditComponent implements OnInit, OnDestroy, CanComponentDeactivate {
+
+  updateSubscribe: Subscription;
+  getSubscribe: Subscription;
 
   post: Post;
   editorTitle: string = "Update post";
@@ -35,7 +38,7 @@ export class PostEditComponent implements OnInit, CanComponentDeactivate {
 
   ngOnInit() {
     const postId: string = this.route.snapshot.paramMap.get('id');
-    this.postService.get(postId).subscribe(
+    this.getSubscribe = this.postService.get(postId).subscribe(
       (data: Post) => this.post = data,
       (error) => console.log(error)
     );
@@ -46,7 +49,7 @@ export class PostEditComponent implements OnInit, CanComponentDeactivate {
     this.loading = true;
     this.isSubmitted = true;
 
-    this.postService.update($event).subscribe(
+    this.updateSubscribe = this.postService.update($event).subscribe(
       data => this.router.navigate([this.auth.redirectUrl || '/']),
       error => {
         console.log(error);
@@ -68,5 +71,13 @@ export class PostEditComponent implements OnInit, CanComponentDeactivate {
     }
 
     return true;
+  }
+
+  ngOnDestroy(): void {
+    if (this.updateSubscribe) {
+      this.updateSubscribe.unsubscribe();
+    }
+    
+    this.getSubscribe.unsubscribe();
   }
 }

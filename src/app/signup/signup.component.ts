@@ -1,17 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 import { SignupModel } from './signup-model';
 import { MustMatch } from '../shared/validators/must-match.validator';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit, OnDestroy {
+
+  signupSubscribe: Subscription;
+
   signupForm: FormGroup;
 
   faSpinner = faSpinner;
@@ -47,7 +51,7 @@ export class SignupComponent implements OnInit {
       password: this.signupForm.get('password').value,
       isSubscribed: false
     };
-    this.auth.signup(signupModel).subscribe(
+    this.signupSubscribe = this.auth.signup(signupModel).subscribe(
       (data) => {
         this.router.navigate([this.auth.redirectUrl || 'signin']);
       },
@@ -57,5 +61,9 @@ export class SignupComponent implements OnInit {
         this.loading = false;
       },
     );
+  }
+
+  ngOnDestroy(): void {
+    this.signupSubscribe.unsubscribe();
   }
 }

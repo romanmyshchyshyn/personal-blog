@@ -1,18 +1,23 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { PostService } from 'src/app/shared/services/post.service';
 import { Post } from 'src/app/shared/models/post';
 import { SearchService } from 'src/app/shared/services/search.service';
 import { PageEvent, MatPaginator } from '@angular/material';
 import { SearchResult } from 'src/app/shared/models/search-result';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-post-details-list',
   templateUrl: './post-details-list.component.html',
   styleUrls: ['./post-details-list.component.css']
 })
-export class PostDetailsListComponent implements OnInit {
+export class PostDetailsListComponent implements OnInit, OnDestroy {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  searcSubscribe: Subscription;
+  postDeleteSubscribe: Subscription;
+
   
   posts: Post[] = [];
   length: number = 10;
@@ -24,7 +29,7 @@ export class PostDetailsListComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.postService.currentPostDeleted.subscribe(
+    this.postDeleteSubscribe = this.postService.currentPostDeleted.subscribe(
       (id: string) => this.posts = this.posts.filter(
         p => p.id != id
       ),
@@ -34,7 +39,7 @@ export class PostDetailsListComponent implements OnInit {
     this.paginator.pageIndex = this.searchService.pageIndex;
 
     this.loading = true;
-    this.searchService.currentSearch.subscribe(
+    this.searcSubscribe = this.searchService.currentSearch.subscribe(
       (result: SearchResult) => {
         this.posts = result.posts
         this.length = result.count
@@ -69,5 +74,10 @@ export class PostDetailsListComponent implements OnInit {
     this.pageIndex = e.pageIndex;
     this.pageSize = e.pageSize;
     this.searchService.search();
+  }
+
+  ngOnDestroy(): void {
+    this.searcSubscribe.unsubscribe();
+    this.postDeleteSubscribe.unsubscribe();
   }
 }

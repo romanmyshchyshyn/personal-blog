@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material';
 import { DeleteSheetComponent } from 'src/app/sheet/delete-sheet/delete-sheet.component';
 import { PostService } from '../../shared/services/post.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -11,12 +12,15 @@ import { Router } from '@angular/router';
   templateUrl: './post-actions.component.html',
   styleUrls: ['./post-actions.component.css']
 })
-export class PostActionsComponent implements OnInit {
+export class PostActionsComponent implements OnInit, OnDestroy {
 
   @Input()
   postId: string;
 
   sheetRef: MatBottomSheetRef<DeleteSheetComponent>;
+
+  afterDismissedSubscribe: Subscription;
+  postDeleteSubscribe: Subscription;
 
   constructor(
     private bottomSheet: MatBottomSheet,
@@ -30,7 +34,7 @@ export class PostActionsComponent implements OnInit {
 
   onDelete() {
     this.sheetRef = this.bottomSheet.open(DeleteSheetComponent);
-    this.sheetRef.afterDismissed().subscribe(
+    this.afterDismissedSubscribe = this.sheetRef.afterDismissed().subscribe(
       (answer: boolean) => {
             
         if (answer) {
@@ -44,5 +48,15 @@ export class PostActionsComponent implements OnInit {
       },
       (error) => console.log(error)
     );
+  }
+
+  ngOnDestroy(): void {
+    if (this.afterDismissedSubscribe) {
+      this.afterDismissedSubscribe.unsubscribe();
+    }
+
+    if (this.postDeleteSubscribe) {
+      this.postDeleteSubscribe.unsubscribe();
+    }   
   }
 }
