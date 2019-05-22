@@ -11,11 +11,13 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: PostDetailsListComponent
+        component: PostDetailsListComponent,
+        data: { animation: 'postDetailsList' }
       },
       {
         path: ':id',
-        component: PostComponent
+        component: PostComponent,
+        data: { animation: 'post' }
       }
     ]
   }

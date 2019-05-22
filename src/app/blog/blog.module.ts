@@ -8,6 +8,7 @@ import { BlogRoutingModule } from './blog-routing.module';
 import { MatListModule, MatDividerModule, MatCardModule, MatButtonModule, MatPaginatorModule } from '@angular/material';
 import { PostFooterComponent } from './post-footer/post-footer.component';
 import { AdminModule } from '../admin/admin.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { AdminModule } from '../admin/admin.module';
     PostFooterComponent],
   imports: [
     CommonModule,
+    BrowserAnimationsModule,
     BlogRoutingModule,
     AdminModule,
     MatListModule,
