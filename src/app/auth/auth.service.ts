@@ -32,7 +32,11 @@ export class AuthService {
     return this.http.post(this.signinUrl, model).pipe(
       tap((result: SigninResult) =>  {
         this.token = result.token;
-        this.user = { name: result.userName, isSubscribed: result.isSubscribed };
+        this.user = { 
+          name: result.userName, 
+          isSubscribed: result.isSubscribed, 
+          isAdmin: result.isAdmin 
+        };
       }),
     );
   }

@@ -19,20 +19,26 @@
           <span>Signed in as <b>{{auth.user.name}}</b> </span>
         </button>
         <mat-divider></mat-divider>
-        <button *ngIf="!auth.user.isSubscribed" mat-menu-item (click)="subscribe(true)">
-          <fa-icon class="logo" [icon]="faBell"></fa-icon>
-          <span>Subscribe</span>
-        </button>
-        <mat-divider></mat-divider>
-        <button *ngIf="auth.user.isSubscribed" mat-menu-item (click)="subscribe(false)">
+        <div *ngIf="!auth.user.isSubscribed">
+          <button mat-menu-item (click)="subscribe(true)">
+            <fa-icon class="logo" [icon]="faBell"></fa-icon>
+            <span>Subscribe</span>
+          </button>
+          <mat-divider></mat-divider>
+        </div>
+        <div *ngIf="auth.user.isSubscribed">
+          <button *ngIf="auth.user.isSubscribed" mat-menu-item (click)="subscribe(false)">
             <fa-icon class="logo" [icon]="faBellSlash"></fa-icon>
             <span>Unsubscribe</span>
-        </button>
-        <mat-divider></mat-divider>
-        <button mat-menu-item [routerLink]="['/post-create']">
-          <span>Create post</span>
-        </button>
-        <mat-divider></mat-divider>
+          </button>
+          <mat-divider></mat-divider>
+        </div>       
+        <div *ngIf="auth.user.isAdmin">
+          <button mat-menu-item [routerLink]="['/post-create']">
+            <span>Create post</span>
+          </button>
+          <mat-divider></mat-divider>
+        </div>
         <button mat-menu-item (click)="signout()">
           <fa-icon class="logo" [icon]="faSignOutAlt"></fa-icon>
           <span>Sign out</span>
