@@ -20,8 +20,9 @@ ul {
 
 .hidden {
     visibility: hidden;
-    height: 10px;
+    height: 3px;
     overflow: hidden;
+    margin: 0!important;
 }
 
 .error-container {
