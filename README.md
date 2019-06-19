@@ -1,6 +1,8 @@
 # PersonalBlog
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.7.
+<h2>Admin account: <br></h2>
+ Name: admin <br>
+ Password: admin <br>
 
 ## Development server
 
