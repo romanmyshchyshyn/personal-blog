@@ -19,7 +19,7 @@
           <span>Signed in as <b>{{auth.user.name}}</b> </span>
         </button>
         <mat-divider></mat-divider>
-        <div *ngIf="!auth.user.isSubscribed">
+        <div *ngIf="!auth.user.isSubscribed && !auth.user.isAdmin">
           <button mat-menu-item (click)="subscribe(true)">
             <fa-icon class="logo" [icon]="faBell"></fa-icon>
             <span>Subscribe</span>
