@@ -3,6 +3,10 @@
 
   <p>Please sign in below with your account.</p>
 
+  <p class="text-warn" *ngIf="failed">
+    Could not log in with the credentials provided.
+  </p>
+
   <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
     <mat-form-field>
       <input type="text" matInput required autofocus formControlName="name" placeholder="Name">
@@ -13,9 +17,6 @@
     <button mat-raised-button color="primary" [disabled]="loading || !signinForm.valid" type="submit">
       Sign in
       <fa-icon [icon]="faSpinner" spin="true" *ngIf="loading"></fa-icon>
-    </button>
-    <p class="text-warn pad-v-sm text-center" *ngIf="failed">
-      Could not log in with the credentials provided.
-    </p>
+    </button>    
   </form>
 </div>

@@ -49,12 +49,19 @@ export class AuthService {
     return !!this.token;
   }
 
+  get isAdmin(): boolean {
+    console.log(this.user);
+    
+    return this.user == null ? false : this.user.isAdmin;
+  }
+
   redirectSignin() {
     this.router.navigate(['/signin']);
   }
 
   signout() {
     this.token = null;
+    this.user = null;
   }
 
   private set token(token: string) {
