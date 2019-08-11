@@ -32,7 +32,8 @@ export class AuthService {
     return this.http.post(this.signinUrl, model).pipe(
       tap((result: SigninResult) =>  {
         this.token = result.token;
-        this.user = { 
+        this.user = {
+          id: result.userId,
           name: result.userName, 
           isSubscribed: result.isSubscribed, 
           isAdmin: result.isAdmin 
@@ -50,9 +51,7 @@ export class AuthService {
   }
 
   get isAdmin(): boolean {
-    console.log(this.user);
-    
-    return this.user == null ? false : this.user.isAdmin;
+     return this.user == null ? false : this.user.isAdmin;
   }
 
   redirectSignin() {
@@ -91,7 +90,7 @@ export class AuthService {
   get user(): User {
     if (this.inBrowser) {
       const userRaw: string = localStorage.getItem('auth-user');
-      const user: any = userRaw ? JSON.parse(userRaw) : null;
+      const user: any = userRaw ? JSON.parse(userRaw) : null;      
       return user;
     }
   }

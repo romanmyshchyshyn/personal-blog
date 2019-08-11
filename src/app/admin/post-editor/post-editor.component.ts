@@ -72,7 +72,9 @@ export class PostEditorComponent implements OnInit, OnChanges {
       title: this.postForm.get('title').value,
       description: this.postForm.get('description').value,
       postedOn: this.post ? this.post.postedOn : new Date(),
-      article: article
+      article: article,
+      globalRateValue: undefined,
+      userRate: undefined
     };
     
     this.submitted.emit(post);

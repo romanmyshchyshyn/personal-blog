@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject, Subject } from 'rxjs';
 import { Post } from '../models/post';
 import { environment } from '../../../environments/environment';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,24 +15,18 @@ export class PostService {
   private postDeletedSource = new BehaviorSubject<string>(" ");
   currentPostDeleted = this.postDeletedSource.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private auth: AuthService) { }
 
   add(post: Post): Observable<any> {
     return this.http.post(this.postUrl, post).pipe();
   }
 
-  getAll(): Observable<Post[]> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json'
-      })
-    };
-
-    return this.http.get<Post[]>(this.postUrl, httpOptions).pipe();
-  }
-
   get(id: string): Observable<Post> {
-    return this.http.get<Post>(this.postUrl + `/${id}`).pipe();
+    const userId = this.auth.user == null ? null : this.auth.user.id;
+
+    return this.http.get<Post>(this.postUrl, {
+      params: { id: id, userId: userId}
+    }).pipe();
   }
 
   update(post: Post): Observable<any> {

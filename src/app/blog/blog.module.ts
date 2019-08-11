@@ -5,10 +5,13 @@ import { PostDetailsListComponent } from './post-details-list/post-details-list.
 import { PostDetailsComponent } from './post-details/post-details.component';
 import { PostComponent } from './post/post.component';
 import { BlogRoutingModule } from './blog-routing.module';
-import { MatListModule, MatDividerModule, MatCardModule, MatButtonModule, MatPaginatorModule } from '@angular/material';
+import { MatListModule, MatDividerModule, MatCardModule, MatButtonModule, MatPaginatorModule, MatSliderModule } from '@angular/material';
 import { PostFooterComponent } from './post-footer/post-footer.component';
 import { AdminModule } from '../admin/admin.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RateComponent } from './rate/rate.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RateService } from './rate/rate.service';
 
 @NgModule({
   declarations: [
@@ -16,17 +19,24 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PostDetailsListComponent, 
     PostDetailsComponent, 
     PostComponent, 
-    PostFooterComponent],
+    PostFooterComponent,
+    RateComponent
+  ],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
     BlogRoutingModule,
+    FontAwesomeModule,
     AdminModule,
     MatListModule,
     MatDividerModule,
     MatCardModule,
     MatButtonModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSliderModule
+  ],
+  providers: [
+    RateService
   ],
   exports: [
     BlogComponent,

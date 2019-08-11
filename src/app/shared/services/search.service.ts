@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Post } from '../models/post';
 import { SearchOptions } from '../models/search-options';
 import { SearchResult } from '../models/search-result';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,7 @@ export class SearchService {
     switchMap((options: SearchOptions) => this.getSearhPosts(options))
   );
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private auth: AuthService) { }
 
   search(data?: string) {
     if (typeof data != "undefined") {
@@ -33,12 +34,14 @@ export class SearchService {
       this.pageIndex = 0;
     }
 
-    this.searchSource.next({data: this.searchText, pageIndex: this.pageIndex, pageSize: this.pageSize});
+    const userId = this.auth.user == null ? null : this.auth.user.id;
+
+    this.searchSource.next({ data: this.searchText, pageIndex: this.pageIndex, pageSize: this.pageSize, userId: userId});
   }
 
   private getSearhPosts(options: SearchOptions): Observable<SearchResult> {
     return this.http.get<SearchResult>(this.searchUrl, {
-      params : {data: options.data, pageIndex: options.pageIndex.toString(), pageSize: options.pageSize.toString()}
+      params : {data: options.data, pageIndex: options.pageIndex.toString(), pageSize: options.pageSize.toString(), userId: options.userId.toString()}
     }).pipe();
   }
 }

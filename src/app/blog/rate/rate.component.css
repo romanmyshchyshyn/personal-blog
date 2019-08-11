@@ -1,0 +1,25 @@
+.flex-row-wrapper {
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+    min-width: 50px;
+}
+
+.flex-column-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.rate-wrapper {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    margin-bottom: 0;
+}
+
+.user-rate-wrapper {
+    color: #DAB838;
+    cursor: pointer;
+}

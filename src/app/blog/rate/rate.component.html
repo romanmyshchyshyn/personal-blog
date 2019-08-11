@@ -1,0 +1,15 @@
+<div class="flex-column-wrapper">
+  <div class="flex-row-wrapper">
+    <p class="rate-wrapper">
+      <fa-icon [icon]="faStar"></fa-icon>
+      <span *ngIf="globalRateValue != 0">{{globalRateValue}}</span>
+      <fa-icon *ngIf="globalRateValue == 0" [icon]="faInfinity" color="primary"></fa-icon>
+    </p>
+    <p class="rate-wrapper user-rate-wrapper" *ngIf="auth.isSignedin">
+      <fa-icon [icon]="faStar" color="primary"></fa-icon>
+      <span *ngIf="userRateValue != 0">{{userRateValue}}</span>
+      <fa-icon *ngIf="userRateValue == 0" [icon]="faInfinity" color="primary"></fa-icon>
+    </p>
+  </div>
+  <mat-slider *ngIf="auth.isSignedin" (change)="sliderChange($event)" class="slider" color="primary" min="0" max="5" step="1" [value]="userRateValue"></mat-slider>
+</div>
