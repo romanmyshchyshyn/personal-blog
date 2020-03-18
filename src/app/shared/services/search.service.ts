@@ -41,7 +41,7 @@ export class SearchService {
 
   private getSearhPosts(options: SearchOptions): Observable<SearchResult> {
     return this.http.get<SearchResult>(this.searchUrl, {
-      params : {data: options.data, pageIndex: options.pageIndex.toString(), pageSize: options.pageSize.toString(), userId: options.userId.toString()}
+      params : {data: options.data, pageIndex: options.pageIndex.toString(), pageSize: options.pageSize.toString(), userId: options.userId}
     }).pipe();
   }
 }
