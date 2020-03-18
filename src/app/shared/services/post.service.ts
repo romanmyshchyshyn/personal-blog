@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 export class PostService {
 
   private postUrl: string = environment.apiUrl + '/post';
-
+ 
   private postDeletedSource = new BehaviorSubject<string>(" ");
   currentPostDeleted = this.postDeletedSource.asObservable();
 
@@ -23,9 +23,9 @@ export class PostService {
 
   get(id: string): Observable<Post> {
     const userId = this.auth.user == null ? null : this.auth.user.id;
-
-    return this.http.get<Post>(this.postUrl, {
-      params: { id: id, userId: userId}
+    const url = this.postUrl + `/${id}`;
+    return this.http.get<Post>(url, {
+      params: { userId: userId}
     }).pipe();
   }
 
