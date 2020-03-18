@@ -26,7 +26,7 @@ export class PostComponent implements OnInit {
     this.postService.get(id).subscribe(
       (data: Post) => {
         this.post = data;
-        this.safeImageUrl = this.sanitizer.bypassSecurityTrustUrl(data.article.image);
+        this.safeImageUrl = data.article.image ? this.sanitizer.bypassSecurityTrustUrl(data.article.image) : null;
       } 
     );
   }
