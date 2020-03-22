@@ -2,7 +2,7 @@
   <div class="flex-row-wrapper">
     <p class="rate-wrapper">
       <fa-icon [icon]="faStar"></fa-icon>
-      <span *ngIf="globalRateValue != 0">{{globalRateValue}}</span>
+      <span *ngIf="globalRateValue != 0">{{globalRateValue | number:'1.0-1'}}</span>
       <fa-icon *ngIf="globalRateValue == 0" [icon]="faInfinity" color="primary"></fa-icon>
     </p>
     <p class="rate-wrapper user-rate-wrapper" *ngIf="auth.isSignedin">
