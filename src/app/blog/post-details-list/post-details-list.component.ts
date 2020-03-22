@@ -76,6 +76,7 @@ export class PostDetailsListComponent implements OnInit, OnDestroy {
 
   set pageSize(value: number) {
     this.searchService.pageSize = value;
+    this.paginator.pageSize = value;
   }
 
   get pageSizeOptions(): number[] {
@@ -84,6 +85,7 @@ export class PostDetailsListComponent implements OnInit, OnDestroy {
 
   set pageIndex(value: number) {
     this.searchService.pageIndex = value;
+    this.paginator.pageIndex = value;
   }
 
   onPageChange(e: PageEvent) {
@@ -99,6 +101,7 @@ export class PostDetailsListComponent implements OnInit, OnDestroy {
 
   onSearchTypeChange(e: MatSelectChange): void {
     this.searchService.searchType = e.value;
+    this.pageIndex = 0;
     this.searchService.search();
   }
 }
