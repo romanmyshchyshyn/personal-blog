@@ -1,5 +1,11 @@
 <div [class.hidden]="!posts.length">
-  <header class="header">Latest posts</header>
+  <header class="header">
+    <mat-select [value]="selectedSearchType" (selectionChange)="onSearchTypeChange($event)" required>
+      <mat-option *ngFor="let searchType of searchTypes" [value]="searchType.value">
+        {{searchType.viewValue}}
+      </mat-option>
+    </mat-select>
+  </header>
 
 <ul>
   <li *ngFor="let post of posts">

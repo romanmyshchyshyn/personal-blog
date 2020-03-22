@@ -5,7 +5,7 @@ import { PostDetailsListComponent } from './post-details-list/post-details-list.
 import { PostDetailsComponent } from './post-details/post-details.component';
 import { PostComponent } from './post/post.component';
 import { BlogRoutingModule } from './blog-routing.module';
-import { MatListModule, MatDividerModule, MatCardModule, MatButtonModule, MatPaginatorModule, MatSliderModule } from '@angular/material';
+import { MatListModule, MatDividerModule, MatCardModule, MatButtonModule, MatPaginatorModule, MatSliderModule, MatSelectModule } from '@angular/material';
 import { PostFooterComponent } from './post-footer/post-footer.component';
 import { AdminModule } from '../admin/admin.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -33,7 +33,8 @@ import { RateService } from './rate/rate.service';
     MatCardModule,
     MatButtonModule,
     MatPaginatorModule,
-    MatSliderModule
+    MatSliderModule,
+    MatSelectModule
   ],
   providers: [
     RateService

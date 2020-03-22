@@ -2,9 +2,11 @@ import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { PostService } from 'src/app/shared/services/post.service';
 import { Post } from 'src/app/shared/models/post';
 import { SearchService } from 'src/app/shared/services/search.service';
-import { PageEvent, MatPaginator } from '@angular/material';
+import { PageEvent, MatPaginator, MatSelectChange } from '@angular/material';
 import { SearchResult } from 'src/app/shared/models/search-result';
 import { Subscription } from 'rxjs';
+import { SelectModel } from 'src/app/shared/models/select.model';
+import { SearchTypeEnum } from 'src/app/shared/enums/search-type.enum';
 
 @Component({
   selector: 'app-post-details-list',
@@ -23,9 +25,16 @@ export class PostDetailsListComponent implements OnInit, OnDestroy {
   length: number = 10;
   loading = false;
 
+  searchTypes: SelectModel[] = [
+    { value: SearchTypeEnum.Latest, viewValue: 'Latest posts' },
+    { value: SearchTypeEnum.Recommended, viewValue: 'Recommended posts' }
+  ];
+  
+  selectedSearchType: SearchTypeEnum;
+
   constructor(
     private postService: PostService,
-    private searchService: SearchService
+    public searchService: SearchService
     ) { }
 
   ngOnInit() {
@@ -56,6 +65,8 @@ export class PostDetailsListComponent implements OnInit, OnDestroy {
       }
     );
 
+    this.selectedSearchType = this.searchService.searchType;
+
     this.searchService.search();
   }
 
@@ -84,5 +95,10 @@ export class PostDetailsListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.searcSubscribe.unsubscribe();
     this.postDeleteSubscribe.unsubscribe();
+  }
+
+  onSearchTypeChange(e: MatSelectChange): void {
+    this.searchService.searchType = e.value;
+    this.searchService.search();
   }
 }
