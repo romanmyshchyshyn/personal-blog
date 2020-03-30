@@ -1,4 +1,4 @@
-<div [class.hidden]="!posts.length">
+<div>
   <header class="header">
     <mat-select [value]="selectedSearchType" (selectionChange)="onSearchTypeChange($event)" required>
       <mat-option *ngFor="let searchType of searchTypes" [value]="searchType.value">
@@ -13,7 +13,7 @@
   </li>
 </ul>
 
-  <mat-paginator class="paginator"
+  <mat-paginator class="paginator" [class.hidden]="!posts.length"
                 [length]="length"
                 [pageSize]="pageSize"
                 [pageSizeOptions]="pageSizeOptions"
